@@ -1,0 +1,98 @@
+/* src/styles/globals.css */
+
+/*
+  Базовые переменные CSS:
+  Определите здесь глобальные цвета, шрифты и другие значения,
+  которые вы хотите использовать во всем приложении,
+  либо напрямую, либо в сочетании с Tailwind.
+*/
+:root {
+  --primary-color: #3b82f6; /* Пример основного цвета */
+  --font-sans:
+    system-ui, Avenir, Helvetica, Arial, sans-serif; /* Пример системного шрифта */
+
+  /*
+    Эти переменные используются в index.css для управления фоном и цветом текста
+    светлой/темной темы на уровне body.
+    Они обеспечивают централизованное управление базовыми цветами.
+  */
+  --background-light: #ffffff; /* Белый фон для светлой темы */
+  --text-light: #111827; /* Темный текст для светлой темы (Tailwind gray-900) */
+  --background-dark: #111827; /* Темный фон для темной темы (Tailwind gray-900) */
+  --text-dark: #f9fafb; /* Светлый текст для темной темы (Tailwind gray-50) */
+
+  /* Устанавливаем предпочтительную цветовую схему для браузера */
+  color-scheme: light dark;
+  /* Устанавливаем базовый шрифт для всего приложения */
+  font-family: var(--font-sans);
+  /* Базовая высота строки */
+  line-height: 1.5;
+  /* Базовый вес шрифта */
+  font-weight: 400;
+
+  /* Оптимизация рендеринга шрифтов */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+}
+/*
+  Базовые стили для HTML и BODY:
+  Эти стили устанавливают общие свойства макета,
+  которые не будут изменяться Tailwind.
+  Например, 100% высота для корректной работы flexbox на body.
+*/
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  Базовые стили для элементов:
+  Применяйте здесь стили, которые должны быть "глобальными сбросами"
+  или базовыми стилями для определенных HTML-элементов,
+  которые Tailwind не затрагивает напрямую или вы хотите переопределить.
+  Избегайте использования @apply здесь.
+*/
+a {
+  text-decoration: none; /* Убираем подчеркивание у ссылок по умолчанию */
+  /* color: var(--primary-color); Используем переменную для цвета ссылок */
+}
+
+a:hover {
+  text-decoration: underline; /* Подчеркиваем ссылки при наведении */
+}
+
+button {
+  font-family: inherit; /* Кнопки наследуют шрифт от родителя */
+  cursor: pointer; /* Делаем курсор "указателем" для кнопок */
+}
+
+/*
+  Здесь не должно быть правил @apply.
+  Все @apply правила должны быть в index.css,
+  после директив @tailwind.
+*/
+@media (max-width: 640px) {
+  /* Пример кастомных стилей для мобильных */
+  body {
+    font-size: 14px;
+  }
+}
