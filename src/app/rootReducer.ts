@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { postsApi } from '@entities/post/api/postApi';
-import postsUiReducer from '@entities/post/model/postsUiSlice';
+import { tokensApi } from '@entities/token/api/tokensApi';
+import tokensUiReducer from '@entities/token/model/TokensUiSlice';
 
 const rootReducer = combineReducers({
-  [postsApi.reducerPath]: postsApi.reducer, // Server state
-  postsUI: postsUiReducer, // UI state
+  [tokensApi.reducerPath]: tokensApi.reducer, // Server state
+  tokensUI: tokensUiReducer, // UI state
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
