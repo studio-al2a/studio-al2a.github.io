@@ -14,7 +14,7 @@
     "type-check": "tsc --noEmit",
     "test": "echo \"No tests specified\"",
     "preview": "vite preview",
-    "prepare": "GIT_DIR=../.git npx husky install",
+    "prepare": "husky install",
     "pre-commit-client-checks": "npm run lint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
