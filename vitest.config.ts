@@ -1,40 +1,22 @@
 import path from 'node:path';
 
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [
-    storybookTest({
-      configDir: path.join(__dirname, '.storybook'),
-    }),
-  ],
-  define: {
-    global: 'globalThis',
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.ts'],
   },
   resolve: {
     alias: {
-      global: 'globalthis',
-      process: 'process/browser',
-      stream: 'stream-browserify',
-      util: 'util',
-      buffer: 'buffer',
+      '@app': path.resolve(__dirname, './src/app'),
+      '@entities': path.resolve(__dirname, './src/entities'),
+      '@features': path.resolve(__dirname, './src/features'),
+      '@pages': path.resolve(__dirname, './src/pages'),
+      '@shared': path.resolve(__dirname, './src/shared'),
     },
-  },
-  optimizeDeps: {
-    include: ['buffer', 'process', 'stream', 'util'],
-  },
-  test: {
-    browser: {
-      enabled: true,
-      headless: true,
-      provider: 'playwright',
-      instances: [
-        {
-          browser: 'chromium',
-        },
-      ],
-    },
-    setupFiles: ['.storybook/vitest.setup.ts'],
   },
 });
