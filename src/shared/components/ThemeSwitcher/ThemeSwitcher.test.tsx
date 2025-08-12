@@ -15,7 +15,7 @@ describe('ThemeSwitcher', () => {
   it('renders theme selector', () => {
     render(<ThemeSwitcher />);
 
-    expect(screen.getByText('Тема:')).toBeInTheDocument();
+    expect(screen.getByText('Theme:')).toBeInTheDocument();
     expect(screen.getByRole('combobox')).toBeInTheDocument();
   });
 

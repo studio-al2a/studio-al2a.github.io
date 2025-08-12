@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 const dirname =
   typeof __dirname !== 'undefined'
     ? __dirname
@@ -21,7 +22,36 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    VitePWA({
+      manifest: {
+        name: 'My React PWA App',
+        short_name: 'MyApp',
+        start_url: '/client-al2a/',
+        display: 'fullscreen',
+        background_color: '#ffffff',
+        theme_color: '#3b82f6',
+        icons: [
+          {
+            src: '/client-al2a/icons/icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/client-al2a/icons/icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
+      registerType: 'autoUpdate',
+      workbox: {
+        cleanupOutdatedCaches: true,
+      },
+    }),
+  ],
   css: {
     postcss: './postcss.config.js',
   },
