@@ -26,13 +26,15 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
+      registerType: 'autoUpdate',
       manifest: {
         name: 'My React PWA App',
         short_name: 'MyApp',
         start_url: '/client-al2a/',
         display: 'fullscreen',
         background_color: '#ffffff',
-        theme_color: '#3b82f6',
+        theme_color: '#b83333d6',
+        orientation: 'portrait-primary',
         icons: [
           {
             src: '/client-al2a/icons/icon-192x192.png',
@@ -46,7 +48,6 @@ export default defineConfig({
           },
         ],
       },
-      registerType: 'autoUpdate',
       workbox: {
         cleanupOutdatedCaches: true,
       },
@@ -64,6 +65,7 @@ export default defineConfig({
       '@widgets': path.resolve(dirname, 'src/widgets'),
       '@pages': path.resolve(dirname, 'src/pages'),
       '@layouts': path.resolve(dirname, 'src/layouts'),
+      '@assets': path.resolve(dirname, 'src/assets'),
     },
   },
   test: {

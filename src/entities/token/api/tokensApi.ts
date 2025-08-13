@@ -25,7 +25,34 @@ export const tokensApi = createApi({
             ]
           : [{ type: 'Tokens', id: 'LIST' }],
     }),
+    getNewTokens: builder.query<Token[], { since: string }>({
+      query: ({ since }) => ({ url: 'tokens', params: { since } }),
+      transformResponse: (response: TokensListResponse) => response.data,
+      async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data: newTokens } = await queryFulfilled;
+          if (newTokens.length > 0) {
+            dispatch(
+              tokensApi.util.updateQueryData(
+                'getTokens',
+                { limit: 50 },
+                draft => {
+                  const existingIds = new Set(draft.map(t => t.id));
+                  newTokens.forEach(token => {
+                    if (!existingIds.has(token.id)) {
+                      draft.unshift(token);
+                    }
+                  });
+                }
+              )
+            );
+          }
+        } catch {
+          // Ошибка при получении новых токенов, ничего не делаем
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetTokensQuery } = tokensApi;
+export const { useGetTokensQuery, useGetNewTokensQuery } = tokensApi;

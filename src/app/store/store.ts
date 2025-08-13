@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { tokensApi } from '@entities/token/api/tokensApi';
 
-import rootReducer from './rootReducer';
+import rootReducer from '../rootReducer';
 
 export const store = configureStore({
   reducer: rootReducer,

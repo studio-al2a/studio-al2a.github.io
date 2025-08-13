@@ -34,6 +34,10 @@ export default {
           900: '#111827',
         },
       },
+      fontSize: {
+        '11xl': '18rem',
+        '12xl': '22rem',
+      },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },

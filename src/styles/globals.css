@@ -77,7 +77,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline; /* Подчеркиваем ссылки при наведении */
+  text-decoration: none; /* Подчеркиваем ссылки при наведении */
 }
 
 button {

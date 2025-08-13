@@ -7,6 +7,8 @@ export interface Token {
   description?: string | null;
   image_url?: string | null;
   url?: string | null;
+  exchange_icon_url?: string | null;
+  website_url?: string | null;
 }
 
 export interface TokensListResponse {
