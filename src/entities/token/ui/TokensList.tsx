@@ -7,6 +7,9 @@ import {
 } from '@entities/token/api/tokensApi';
 
 import TokenItem from './TokenItem';
+import TokenItemSkeleton from './TokenItemSkeleton';
+
+const SKELETON_COUNT = 3;
 
 const TokensList = () => {
   const {
@@ -16,14 +19,10 @@ const TokensList = () => {
     refetch,
   } = useGetTokensQuery(
     { limit: 50 },
-    {
-      pollingInterval: 60000,
-      refetchOnMountOrArgChange: true,
-    }
+    { pollingInterval: 60000, refetchOnMountOrArgChange: true }
   );
 
   const audioRef = useRef<HTMLAudioElement>(null);
-
   const lastTokenIdRef = useRef<number | null>(null);
 
   const { data: newTokens } = useGetNewTokensQuery(
@@ -50,8 +49,10 @@ const TokensList = () => {
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center py-8'>
-        <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500'></div>
+      <div className='bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700'>
+        {Array.from({ length: SKELETON_COUNT }).map((_, i) => (
+          <TokenItemSkeleton key={i} />
+        ))}
       </div>
     );
   }

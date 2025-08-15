@@ -28,8 +28,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'My React PWA App',
-        short_name: 'MyApp',
+        name: 'STUDIO AL2A',
+        short_name: 'AL2A',
         start_url: '/client-al2a/',
         display: 'fullscreen',
         background_color: '#ffffff',

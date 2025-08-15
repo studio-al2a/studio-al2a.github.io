@@ -1,5 +1,6 @@
-import { FaGlobe } from 'react-icons/fa';
+import { FaGlobe, FaExchangeAlt } from 'react-icons/fa';
 
+import icon from '@assets/no-image.png';
 import type { Token } from '@entities/token/model/Token';
 
 interface TokenItemProps {
@@ -19,10 +20,16 @@ const TokenItem = ({ token }: TokenItemProps) => (
     <div className='mb-2 sm:mb-0 break-words flex-1 flex flex-col gap-2'>
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-3'>
-          {token.image_url && (
+          {token.image_url ? (
             <img
               src={token.image_url}
               alt={token.name}
+              className='w-10 h-10 rounded-full object-cover'
+            />
+          ) : (
+            <img
+              src={icon}
+              alt='No image'
               className='w-10 h-10 rounded-full object-cover'
             />
           )}
@@ -71,18 +78,18 @@ const TokenItem = ({ token }: TokenItemProps) => (
             target='_blank'
             rel='noopener noreferrer'
             className='
-      px-4 py-2 
-      text-sm font-semibold
-      text-white 
-      rounded-lg
+      w-10 h-10
+      flex items-center justify-center
+      rounded-full
       bg-gradient-to-r from-green-500 to-green-600
       hover:from-green-600 hover:to-green-700
+      text-white
       shadow-md
       transition-all duration-200
-      flex items-center justify-center
     '
+            title='Trade on exchange'
           >
-            Buy
+            <FaExchangeAlt size={16} />
           </a>
         )}
       </div>
